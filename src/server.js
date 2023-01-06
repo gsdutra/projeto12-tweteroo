@@ -1,14 +1,16 @@
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 var server_users = [];
 
 var tweets = [];
 
 app.get('/tweets', (req, res) => {
-	res.send(tweets.slice(-10));
+	res.send(tweets.slice(-10).reverse());
 });
 
 app.post('/sign-up', (req, res) => {
