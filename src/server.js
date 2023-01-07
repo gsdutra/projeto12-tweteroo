@@ -27,9 +27,9 @@ app.post(
 	'/sign-up',(req, res) => {
 		const data = req.body;
 
-		if (data.username && data.avatar){
+		if (data.username && data.avatar && typeof data.username === 'string' && typeof data.avatar == 'string'){
 			server_users.push(data);
-			res.send('OK')
+			res.status(201).send('OK')
 		}else{
 			res.status(400).send("Todos os campos são obrigatórios!");
 		}
@@ -39,7 +39,7 @@ app.post('/tweets', (req, res) => {
 	const data = req.body;
 	const username = req.headers.user;
 	
-	if (data.tweet && username){
+	if (data.tweet && username && typeof data.tweet === 'string'){
 		if (server_users.find(element => element.username===username)){
 			tweets.push(
 				{
