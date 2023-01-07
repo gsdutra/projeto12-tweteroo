@@ -23,6 +23,11 @@ app.get('/tweets', (req, res) => {
 	}
 });
 
+app.get('/tweets/:username', (req, res)=>{
+	const username = req.params.username;
+	res.status(200).send(tweets.filter(element => element.username === 'username'));
+});
+
 app.post(
 	'/sign-up',(req, res) => {
 		const data = req.body;
